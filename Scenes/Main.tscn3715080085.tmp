@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://brxqjgptrv22q"]
+
+[ext_resource type="Shader" uid="uid://b7enduvmphje5" path="res://Resources/Shaders/DitherScreen.gdshader" id="1_v1gob"]
+[ext_resource type="PackedScene" uid="uid://qx8v1xirjwrr" path="res://Source/Player/Player.tscn" id="2_v1gob"]
+[ext_resource type="PackedScene" uid="uid://cw8erv63dbjg5" path="res://Assets/Reactor/reactor.tscn" id="3_jw32o"]
+[ext_resource type="PackedScene" uid="uid://c43pc0j444lqw" path="res://Assets/Lights/light1.tscn" id="4_50glp"]
+[ext_resource type="PackedScene" uid="uid://cffxvai4moksa" path="res://Assets/Lights/light2.tscn" id="5_vy5pj"]
+[ext_resource type="PackedScene" uid="uid://cejl4dcv3rggx" path="res://Source/Simulation/Simulation.tscn" id="6_jw32o"]
+[ext_resource type="PackedScene" uid="uid://e46i627qqcpi" path="res://Source/Displays/Display1/Display1.tscn" id="7_jw32o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bo1nx"]
+shader = ExtResource("1_v1gob")
+shader_parameter/color_levels = 10
+shader_parameter/dither_strength = 1.0
+
+[sub_resource type="Environment" id="Environment_8gbba"]
+background_mode = 2
+ambient_light_source = 2
+ambient_light_color = Color(0.21244147, 0.20492144, 0.3515625, 1)
+ssao_enabled = true
+ssao_radius = 0.36
+ssao_power = 6.8921747
+ssil_enabled = true
+glow_enabled = true
+
+[node name="Node3D" type="Node3D" unique_id=651685085]
+
+[node name="Simulation" parent="." unique_id=1127304011 instance=ExtResource("6_jw32o")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1313036515]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=480490344]
+material = SubResource("ShaderMaterial_bo1nx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1895227888]
+environment = SubResource("Environment_8gbba")
+
+[node name="Player" parent="." unique_id=1091967795 instance=ExtResource("2_v1gob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2591205, -0.5529132, 24.033743)
+
+[node name="Objects" type="Node3D" parent="." unique_id=76069309]
+
+[node name="reactor" parent="Objects" unique_id=469139299 instance=ExtResource("3_jw32o")]
+
+[node name="Lights" type="Node3D" parent="Objects" unique_id=253302131]
+
+[node name="Light1_1" parent="Objects/Lights" unique_id=1235995008 instance=ExtResource("4_50glp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3629363, 2.6404114, 18.943254)
+
+[node name="Light1_2" parent="Objects/Lights" unique_id=767822840 instance=ExtResource("4_50glp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.363, 2.64, 18.943)
+
+[node name="Light1_3" parent="Objects/Lights" unique_id=166689570 instance=ExtResource("4_50glp")]
+transform = Transform3D(0.55907434, 0, -0.82911766, 0, 1, 0, 0.82911766, 0, 0.55907434, 7.7339926, 2.64, 21.845806)
+
+[node name="Light1_4" parent="Objects/Lights" unique_id=1876869757 instance=ExtResource("4_50glp")]
+transform = Transform3D(0.55919296, 0, 0.82903767, 0, 1, 0, -0.82903767, 0, 0.55919296, -7.734, 2.64, 21.846)
+
+[node name="light2_1" parent="Objects/Lights" unique_id=631420815 instance=ExtResource("5_vy5pj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.015129, 11.996499, 0)
+
+[node name="light2_2" parent="Objects/Lights" unique_id=998417488 instance=ExtResource("5_vy5pj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.015, 11.996, 0)
+
+[node name="light2_3" parent="Objects/Lights" unique_id=1792606858 instance=ExtResource("5_vy5pj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.371669e-05, 11.996499, 15.015064)
+visible = false
+
+[node name="light2_4" parent="Objects/Lights" unique_id=469093751 instance=ExtResource("5_vy5pj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.5029344e-05, 11.996, -15.015064)
+
+[node name="Display1_1" parent="Objects" unique_id=235366711 instance=ExtResource("7_jw32o")]
+transform = Transform3D(0.7970622, 0, 0.6038972, 0, 1, 0, -0.6038972, 0, 0.7970622, -6.0690894, 0.8748374, 17.881813)
+value = 123.4
+
+[node name="Display1_2" parent="Objects" unique_id=737190281 instance=ExtResource("7_jw32o")]
+transform = Transform3D(0.7970622, 0, 0.6038972, 0, 1, 0, -0.6038972, 0, 0.7970622, -6.0690894, 0.5957785, 17.881813)
+
+[node name="Display1_3" parent="Objects" unique_id=1725654306 instance=ExtResource("7_jw32o")]
+transform = Transform3D(0.7970622, 0, 0.6038972, 0, 1, 0, -0.6038972, 0, 0.7970622, -6.0690894, 0.31102067, 17.881813)

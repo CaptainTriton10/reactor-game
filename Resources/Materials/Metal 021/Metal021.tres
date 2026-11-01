@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c57ynolibnktj"]
+
+[ext_resource type="Shader" uid="uid://csli5df1q4b1o" path="res://Resources/Shaders/Pixellate.gdshader" id="1_ij54m"]
+[ext_resource type="Texture2D" uid="uid://dbh5bkew21jg3" path="res://Resources/Materials/Metal 021/Metal021_1K-PNG_Color.png" id="2_b7oaj"]
+[ext_resource type="Texture2D" uid="uid://cfvlya20i520h" path="res://Resources/Materials/Metal 021/Metal021_1K-PNG_Metalness-Metal021_1K-PNG_Roughness.png" id="3_v71o4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ij54m")
+shader_parameter/albedo_tex = ExtResource("2_b7oaj")
+shader_parameter/roughness_tex = ExtResource("3_v71o4")
+shader_parameter/quantise_steps = 32
+shader_parameter/pixel_steps = Vector2i(128, 128)
+shader_parameter/enable_pixellation = false
+shader_parameter/uv_scale = Vector2(1, 1)

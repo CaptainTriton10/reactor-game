@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dh1f6wdodcsbs"]
+
+[ext_resource type="PackedScene" uid="uid://0lhjd33t7t8o" path="res://Assets/Control Room/Main Panels/MainPanels.glb" id="1_41yv4"]
+[ext_resource type="Shader" uid="uid://csli5df1q4b1o" path="res://Resources/Shaders/Pixellate.gdshader" id="2_0lrpw"]
+[ext_resource type="Material" uid="uid://casqhls0nmvmp" path="res://Resources/Materials/Concrete 031/Concrete031.tres" id="2_c5bt7"]
+[ext_resource type="Texture2D" uid="uid://x85ih0cwjwyn" path="res://Resources/Materials/Concrete 031/Concrete031_1K-PNG_Color.png" id="3_7f17u"]
+[ext_resource type="Material" uid="uid://bh2l4yo35xiib" path="res://Resources/Materials/Metal 022/Metal022.tres" id="3_y8xmv"]
+[ext_resource type="Texture2D" uid="uid://yxn62x4nb2l" path="res://Resources/Materials/Concrete 031/Concrete031_1K-PNG_Roughness.png" id="4_xfaje"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aalbr"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_0lrpw")
+shader_parameter/albedo_tex = ExtResource("3_7f17u")
+shader_parameter/roughness_tex = ExtResource("4_xfaje")
+shader_parameter/quantise_steps = 32
+shader_parameter/pixel_steps = Vector2i(512, 512)
+shader_parameter/enable_pixellation = true
+shader_parameter/uv_scale = Vector2(1, 1)
+
+[node name="MainPanels" unique_id=687040508 instance=ExtResource("1_41yv4")]
+
+[node name="ConsoleCenter" parent="." index="0" unique_id=1609291908]
+surface_material_override/0 = SubResource("ShaderMaterial_aalbr")
+
+[node name="ConsoleLeft" parent="." index="1" unique_id=1994027705]
+material_override = ExtResource("2_c5bt7")
+
+[node name="ConsoleRight" parent="." index="2" unique_id=946083959]
+material_override = ExtResource("2_c5bt7")
+
+[node name="Screw1_001" parent="." index="3" unique_id=117442540]
+material_override = ExtResource("3_y8xmv")

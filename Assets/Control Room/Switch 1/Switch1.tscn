@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://pscntav2xrsb"]
+
+[ext_resource type="PackedScene" uid="uid://b1oysv2mwfjnt" path="res://Assets/Control Room/Switch 1/Switch1.glb" id="1_yhflb"]
+[ext_resource type="Script" uid="uid://dy6hmokxkcism" path="res://Scripts/Common/Switch 1/Switch1Wrapper.gd" id="2_kpagt"]
+[ext_resource type="Material" uid="uid://c57ynolibnktj" path="res://Resources/Materials/Metal 021/Metal021.tres" id="2_rc5f8"]
+[ext_resource type="Script" uid="uid://djxlmmb7oo20d" path="res://Scripts/Common/Switch 1/Switch1.gd" id="3_rc5f8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpagt"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+
+[node name="Switch 1" unique_id=680791114 instance=ExtResource("1_yhflb")]
+script = ExtResource("2_kpagt")
+
+[node name="Switch1" parent="." index="0" unique_id=556883018]
+material_override = ExtResource("2_rc5f8")
+
+[node name="Cube_001" parent="Switch1" index="0" unique_id=231242007]
+material_override = ExtResource("2_rc5f8")
+
+[node name="Pad" parent="Switch1" index="1" unique_id=1717359260]
+surface_material_override/0 = SubResource("StandardMaterial3D_kpagt")
+
+[node name="StaticBody3D" parent="Switch1/Pad" index="0" unique_id=285458555]
+script = ExtResource("3_rc5f8")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." index="1" unique_id=1797052674]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.053269744, 2.3284945e-09)
+light_color = Color(0.491767, 1, 0.61882526, 1)
+light_energy = 0.3
+area_size = Vector2(0.153, 0.153)

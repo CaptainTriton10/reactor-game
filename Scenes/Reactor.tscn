@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://blyusw16ivepu"]
+
+[ext_resource type="PackedScene" uid="uid://dtatlvyljd05e" path="res://Assets/Reactor/Reactor.glb" id="1_225tm"]
+
+[node name="reactor" unique_id=676613567 instance=ExtResource("1_225tm")]

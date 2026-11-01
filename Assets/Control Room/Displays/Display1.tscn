@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://e46i627qqcpi"]
+
+[ext_resource type="PackedScene" uid="uid://do73d5yfaxw83" path="res://Assets/Control Room/Displays/Display1.glb" id="1_f8wqk"]
+[ext_resource type="Script" uid="uid://cjeo3l1w6g6c2" path="res://Source/Displays/Display1/Display1Handler.gd" id="2_dlflg"]
+[ext_resource type="Material" uid="uid://bh2l4yo35xiib" path="res://Resources/Materials/Metal 022/Metal022.tres" id="2_obke5"]
+[ext_resource type="Shader" uid="uid://3r1fmfisk8js" path="res://Resources/Shaders/Display.gdshader" id="4_ar7j8"]
+[ext_resource type="FontFile" uid="uid://biv7kvy3l7ykb" path="res://Resources/Fonts/Jersey_10/Jersey10-Regular.ttf" id="4_dlflg"]
+[ext_resource type="Texture2D" uid="uid://bw5l1dq1tndiw" path="res://Resources/Textures/Subpixel.png" id="5_veqs6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_veqs6"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fyokx"]
+resource_local_to_scene = true
+albedo_color = Color(0.12270111, 0.4265738, 1, 1)
+emission_enabled = true
+emission_energy_multiplier = 2.02
+emission_texture = SubResource("ViewportTexture_veqs6")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6mvdy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dldlp"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission_energy_multiplier = 2.5
+emission_texture = SubResource("ViewportTexture_6mvdy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_f8wqk"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_dldlp")
+size = Vector2(0.83, 0.2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jw4ng"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_veqs6"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_ar7j8")
+shader_parameter/subpixel_tex = ExtResource("5_veqs6")
+shader_parameter/display_tex = SubResource("ViewportTexture_jw4ng")
+shader_parameter/uv_scale = Vector2(175, 68.982)
+shader_parameter/brightness = 4.5
+shader_parameter/pixel_enabled = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_f8wqk"]
+font = ExtResource("4_dlflg")
+font_size = 204
+font_color = Color(0.7211109, 0.7953688, 0.8862745, 1)
+
+[node name="Display1" unique_id=235366711 node_paths=PackedStringArray("label") instance=ExtResource("1_f8wqk")]
+script = ExtResource("2_dlflg")
+label = NodePath("SubViewport/Control/Label")
+
+[node name="Display 1" parent="." index="0" unique_id=50146037]
+material_override = ExtResource("2_obke5")
+
+[node name="Screen" parent="Display 1" index="0" unique_id=239784087]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_fyokx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Display 1" index="1" unique_id=1240578142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.022673398)
+mesh = SubResource("QuadMesh_f8wqk")
+surface_material_override/0 = SubResource("ShaderMaterial_veqs6")
+
+[node name="SubViewport" type="SubViewport" parent="." index="1" unique_id=1992185749]
+size = Vector2i(830, 199)
+
+[node name="Control" type="Control" parent="SubViewport" index="0" unique_id=661012715]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/Control" index="0" unique_id=470259406]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09008688, 0.54706144, 1, 1)
+
+[node name="Label" type="Label" parent="SubViewport/Control" index="1" unique_id=1695627151]
+layout_mode = 0
+offset_left = 42.855
+offset_top = -5.96
+offset_right = 806.855
+offset_bottom = 235.04036
+text = "000.0 kW"
+label_settings = SubResource("LabelSettings_f8wqk")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." index="2" unique_id=1727257319]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0.05900432)
+light_color = Color(0.24416333, 0.62529546, 1, 1)
+light_energy = 0.5
+area_size = Vector2(0.85739154, 0.21059704)

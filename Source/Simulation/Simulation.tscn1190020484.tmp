@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cejl4dcv3rggx"]
+
+[ext_resource type="Script" uid="uid://b8s8tvhse4a5b" path="res://Source/Simulation/SimulationMain.gd" id="1_0rnwu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xspu4"]
+font_size = 36
+
+[node name="Simulation" type="Node3D" unique_id=1127304011]
+script = ExtResource("1_0rnwu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=659131503]
+
+[node name="DebugValues" type="Label" parent="CanvasLayer" unique_id=1674507735]
+offset_right = 40.0
+offset_bottom = 23.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(20, 20)
+text = "Reactivity: ###"
+label_settings = SubResource("LabelSettings_xspu4")

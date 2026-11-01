@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://qx8v1xirjwrr"]
+
+[ext_resource type="Script" uid="uid://cxlo5k74nkqsq" path="res://Source/Player/PlayerMovement.gd" id="1_3qydi"]
+[ext_resource type="Script" uid="uid://d1qn83hfl7l4b" path="res://Source/Player/PlayerInteraction.gd" id="2_ft8w5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l2ndj"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3qydi"]
+dof_blur_near_enabled = true
+dof_blur_near_distance = 0.88
+
+[node name="Player" type="CharacterBody3D" unique_id=1091967795 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_3qydi")
+camera = NodePath("Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=752230685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_l2ndj")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=961333654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.669, 0)
+attributes = SubResource("CameraAttributesPractical_3qydi")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=892614161]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, -3, 0)
+
+[node name="Interaction" type="Node3D" parent="." unique_id=1166438649 node_paths=PackedStringArray("raycast")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.669, 0)
+script = ExtResource("2_ft8w5")
+raycast = NodePath("../Camera3D/RayCast3D")

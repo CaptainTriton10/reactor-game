@@ -1,0 +1,16 @@
+Coolant level
+0 - 100%
+core temperature ^
+
+Control rod insertion level
+0 - 100%
+core temperature v
+
+Core Temperature
+thermal power ^
+
+Turbine bypass
+power generation v
+
+SCRAM
+reactor power output = 0

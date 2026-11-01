@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://teem1qqfkofb"]
+
+[ext_resource type="PackedScene" uid="uid://6jafuta2lkdh" path="res://Assets/Control Room/Wheel 1/Wheel1.glb" id="1_jfsou"]
+[ext_resource type="Material" uid="uid://c57ynolibnktj" path="res://Resources/Materials/Metal 021/Metal021.tres" id="2_dfncw"]
+[ext_resource type="Script" uid="uid://tbku6sc8udmx" path="res://Scripts/Common/Wheel 1/Wheel1Wrapper.gd" id="2_f48bw"]
+[ext_resource type="Material" uid="uid://b64yyyx4u2djr" path="res://Resources/Materials/Red Plastic/RedPlastic.tres" id="3_hc6n0"]
+[ext_resource type="Script" uid="uid://bnk7ipdmcpone" path="res://Scripts/Common/Wheel 1/Wheel1.gd" id="4_hc6n0"]
+
+[node name="Wheel1" unique_id=1336887796 instance=ExtResource("1_jfsou")]
+script = ExtResource("2_f48bw")
+
+[node name="Wheel 1" parent="." index="0" unique_id=171498231]
+material_override = ExtResource("2_dfncw")
+
+[node name="Cylinder_004" parent="Wheel 1" index="0" unique_id=759445523]
+material_override = ExtResource("2_dfncw")
+
+[node name="Cylinder_005" parent="Wheel 1" index="1" unique_id=15457235]
+material_override = ExtResource("2_dfncw")
+
+[node name="Ring" parent="Wheel 1" index="2" unique_id=1570447718]
+material_override = ExtResource("3_hc6n0")
+
+[node name="Cube_002" parent="Wheel 1/Ring" index="0" unique_id=335511025]
+material_override = ExtResource("2_dfncw")
+
+[node name="Cylinder_006" parent="Wheel 1/Ring" index="1" unique_id=1685081669]
+material_override = ExtResource("2_dfncw")
+
+[node name="StaticBody3D" parent="Wheel 1/Ring" index="2" unique_id=63857835]
+script = ExtResource("4_hc6n0")

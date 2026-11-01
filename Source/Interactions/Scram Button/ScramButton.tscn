@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://dgla6xoat5kq5"]
+
+[ext_resource type="PackedScene" uid="uid://c4qxfbhhruo" path="res://Assets/Control Room/Button 2/Button2.glb" id="1_g03cb"]
+[ext_resource type="Script" uid="uid://bwrmn3ivb7qt5" path="res://Source/Interactions/Scram Button/ScramButton.gd" id="2_ge1s1"]
+[ext_resource type="Material" uid="uid://c57ynolibnktj" path="res://Resources/Materials/Metal 021/Metal021.tres" id="2_xqo4j"]
+[ext_resource type="Shader" uid="uid://dh7mits063jpg" path="res://Resources/Shaders/Glass.gdshader" id="3_3ngli"]
+[ext_resource type="Script" uid="uid://cv5ayf46v8vu1" path="res://Source/Interactions/Scram Button/ScramButtonCover.gd" id="4_iy1qo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c07l0"]
+render_priority = 0
+shader = ExtResource("3_3ngli")
+
+[sub_resource type="Animation" id="Animation_iy1qo"]
+resource_name = "CoverLift"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.39999998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.2566371)]
+}
+
+[sub_resource type="Animation" id="Animation_il1gv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ybfu"]
+_data = {
+&"CoverLift": SubResource("Animation_iy1qo"),
+&"RESET": SubResource("Animation_il1gv")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du30k"]
+albedo_color = Color(1, 0.44308543, 0.41322976, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_il1gv"]
+height = 0.1
+radius = 0.08
+
+[sub_resource type="Animation" id="Animation_3ybfu"]
+resource_name = "ButtonPress"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.30594376),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.05629418, 0), Vector3(0, 0.020099662, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hg6b1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.05629418, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_62vbc"]
+_data = {
+&"ButtonPress": SubResource("Animation_3ybfu"),
+&"RESET": SubResource("Animation_hg6b1")
+}
+
+[node name="Button2" unique_id=1691694081 instance=ExtResource("1_g03cb")]
+
+[node name="Button2" parent="." index="0" unique_id=2002372005]
+material_override = ExtResource("2_xqo4j")
+
+[node name="Cube" parent="Button2" index="0" unique_id=1044820325]
+surface_material_override/0 = SubResource("ShaderMaterial_c07l0")
+
+[node name="Cylinder" parent="Button2/Cube" index="0" unique_id=2134586947]
+material_override = ExtResource("2_xqo4j")
+
+[node name="StaticBody3D" parent="Button2/Cube" index="1" unique_id=1720244659 node_paths=PackedStringArray("anim_player")]
+script = ExtResource("4_iy1qo")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button2/Cube" index="2" unique_id=771383579]
+libraries/ = SubResource("AnimationLibrary_3ybfu")
+
+[node name="Pad_001" parent="Button2" index="1" unique_id=1912374721]
+surface_material_override/0 = SubResource("StandardMaterial3D_du30k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Button2/Pad_001" index="0" unique_id=1281938569 node_paths=PackedStringArray("anim_player")]
+script = ExtResource("2_ge1s1")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button2/Pad_001/StaticBody3D" index="0" unique_id=886953688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.015603811, 0)
+shape = SubResource("CylinderShape3D_il1gv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button2/Pad_001" index="1" unique_id=1747894670]
+libraries/ = SubResource("AnimationLibrary_62vbc")
+
+[node name="Pad_002" parent="Button2" index="2" unique_id=252940009]
+material_override = ExtResource("2_xqo4j")

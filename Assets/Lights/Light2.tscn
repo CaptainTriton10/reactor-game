@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cffxvai4moksa"]
+
+[ext_resource type="PackedScene" uid="uid://dc4unbj07behb" path="res://Assets/Lights/Light2.glb" id="1_bt66h"]
+[ext_resource type="Material" uid="uid://bh2l4yo35xiib" path="res://Resources/Materials/Metal 022/Metal022.tres" id="2_26ek3"]
+[ext_resource type="Script" uid="uid://cmbqsunr24i3a" path="res://Scripts/Common/Lights/Lights2.gd" id="2_kojxv"]
+[ext_resource type="Material" uid="uid://dmr4m2gehprnb" path="res://Resources/Materials/Lights/cool_light.tres" id="3_3kse6"]
+
+[node name="light2" unique_id=631420815 instance=ExtResource("1_bt66h")]
+script = ExtResource("2_kojxv")
+
+[node name="Light2" parent="." index="0" unique_id=1342899743]
+material_override = ExtResource("2_26ek3")
+
+[node name="Emitter_001" parent="Light2" index="0" unique_id=214477114]
+material_override = ExtResource("3_3kse6")
+
+[node name="AreaLight" type="AreaLight3D" parent="." index="1" unique_id=1374055063]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -1.1457323, 0)
+light_color = Color(0.83137256, 0.8784314, 1, 1)
+light_energy = 13.0
+shadow_enabled = true
+area_range = 30.0
+area_size = Vector2(8.395, 8.395)

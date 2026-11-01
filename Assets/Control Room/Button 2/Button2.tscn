@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://d1l6stpp4828c"]
+
+[ext_resource type="PackedScene" uid="uid://c4qxfbhhruo" path="res://Assets/Control Room/Button 2/Button2.glb" id="1_c07l0"]
+[ext_resource type="Material" uid="uid://c57ynolibnktj" path="res://Resources/Materials/Metal 021/Metal021.tres" id="2_aotoi"]
+[ext_resource type="Script" uid="uid://ber0tf1wd16ef" path="res://Scripts/Common/Button 2/Button2Wrapper.gd" id="2_spjr5"]
+[ext_resource type="Shader" uid="uid://dh7mits063jpg" path="res://Resources/Shaders/Glass.gdshader" id="3_aotoi"]
+[ext_resource type="Script" uid="uid://bvgse0sw0xm4w" path="res://Scripts/Common/Button 2/ButtonCover.gd" id="4_tn77o"]
+[ext_resource type="Script" uid="uid://b1ysylnwgr5vk" path="res://Scripts/Common/Button 2/Button2.gd" id="5_hebn3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c07l0"]
+render_priority = 0
+shader = ExtResource("3_aotoi")
+
+[sub_resource type="Animation" id="Animation_aotoi"]
+resource_name = "CoverLift"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.3089969)]
+}
+
+[sub_resource type="Animation" id="Animation_tn77o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hebn3"]
+_data = {
+&"CoverLift": SubResource("Animation_aotoi"),
+&"RESET": SubResource("Animation_tn77o")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du30k"]
+albedo_color = Color(1, 0.44308543, 0.41322976, 1)
+
+[sub_resource type="Animation" id="Animation_hebn3"]
+resource_name = "ButtonPress"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.05629418, 0), Vector3(0, 0.012, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_spjr5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.05629418, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbicx"]
+_data = {
+&"ButtonPress": SubResource("Animation_hebn3"),
+&"RESET": SubResource("Animation_spjr5")
+}
+
+[node name="Button2" unique_id=1691694081 instance=ExtResource("1_c07l0")]
+script = ExtResource("2_spjr5")
+
+[node name="Button2" parent="." index="0" unique_id=1273919033]
+material_override = ExtResource("2_aotoi")
+
+[node name="Cube" parent="Button2" index="0" unique_id=438981235]
+surface_material_override/0 = SubResource("ShaderMaterial_c07l0")
+
+[node name="Cylinder" parent="Button2/Cube" index="0" unique_id=486912732]
+material_override = ExtResource("2_aotoi")
+
+[node name="StaticBody3D" parent="Button2/Cube" index="1" unique_id=538149519]
+script = ExtResource("4_tn77o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button2/Cube" index="2" unique_id=2001549705]
+libraries/ = SubResource("AnimationLibrary_hebn3")
+
+[node name="Pad_001" parent="Button2" index="1" unique_id=2103861288]
+surface_material_override/0 = SubResource("StandardMaterial3D_du30k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button2/Pad_001" index="0" unique_id=1847366012]
+libraries/ = SubResource("AnimationLibrary_hbicx")
+
+[node name="StaticBody3D" parent="Button2/Pad_001" index="1" unique_id=525837680]
+script = ExtResource("5_hebn3")
+
+[node name="Pad_002" parent="Button2" index="2" unique_id=1497168134]
+material_override = ExtResource("2_aotoi")

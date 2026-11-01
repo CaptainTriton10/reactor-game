@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c43pc0j444lqw"]
+
+[ext_resource type="PackedScene" uid="uid://cgxtrw8o183gc" path="res://Assets/Lights/Light1.glb" id="1_uks7i"]
+[ext_resource type="Script" uid="uid://d2a0v0xw0770c" path="res://Scripts/Common/Lights/Lights1.gd" id="2_dwvtl"]
+[ext_resource type="Material" uid="uid://bh2l4yo35xiib" path="res://Resources/Materials/Metal 022/Metal022.tres" id="2_u12j3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwvtl"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.60784316, 0.23529412, 1)
+emission_energy_multiplier = 14.0
+
+[node name="Light1" unique_id=1235995008 instance=ExtResource("1_uks7i")]
+script = ExtResource("2_dwvtl")
+
+[node name="Light1" parent="." index="0" unique_id=1457796166]
+material_override = ExtResource("2_u12j3")
+
+[node name="Emitter" parent="Light1" index="0" unique_id=355597787]
+material_override = SubResource("StandardMaterial3D_dwvtl")
+
+[node name="AreaLight" type="AreaLight3D" parent="." index="1" unique_id=1477561930]
+transform = Transform3D(1, 0, 0, 0, -0.20729235, 0.97827905, 0, -0.97827905, -0.20729235, 0, -0.56601727, 0.15844935)
+light_color = Color(1, 0.68235296, 0.4, 1)
+light_energy = 9.153
+shadow_enabled = true
+area_range = 6.0
+area_size = Vector2(2.1000195, 0.40879738)

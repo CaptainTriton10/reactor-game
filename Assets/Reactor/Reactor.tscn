@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cw8erv63dbjg5"]
+
+[ext_resource type="PackedScene" uid="uid://dtatlvyljd05e" path="res://Assets/Reactor/Reactor.glb" id="1_00elp"]
+[ext_resource type="Material" uid="uid://casqhls0nmvmp" path="res://Resources/Materials/Concrete 031/Concrete031.tres" id="2_01xl5"]
+[ext_resource type="Shader" uid="uid://dh7mits063jpg" path="res://Resources/Shaders/Glass.gdshader" id="3_01xl5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00elp"]
+render_priority = 0
+shader = ExtResource("3_01xl5")
+
+[node name="reactor" unique_id=469139299 instance=ExtResource("1_00elp")]
+
+[node name="Chamber" parent="." index="0" unique_id=1236065692]
+material_override = ExtResource("2_01xl5")
+
+[node name="ControlRoom" parent="." index="1" unique_id=1376518894]
+material_override = ExtResource("2_01xl5")
+
+[node name="Core" parent="." index="2" unique_id=1215219397]
+material_override = ExtResource("2_01xl5")
+
+[node name="Window" parent="." index="3" unique_id=1371449038]
+surface_material_override/0 = SubResource("ShaderMaterial_00elp")

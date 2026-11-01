@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://c6jqesltn1lmk"]
+
+[ext_resource type="PackedScene" uid="uid://dqu3gxvrakpxd" path="res://Assets/Control Room/Button 1/Button1.glb" id="1_4b6nj"]
+
+[sub_resource type="GDScript" id="GDScript_4b6nj"]
+script/source = "extends Interactable
+
+@export var anim_player: AnimationPlayer
+@export var event: Signal
+
+func interact() -> void:
+	anim_player.play(\"ButtonPress\")
+	event.emit()
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wrw2x"]
+radius = 1.0
+
+[sub_resource type="Animation" id="Animation_4b6nj"]
+resource_name = "ButtonPress"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button1/Pad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.042193376, 0), Vector3(0, 0.012, 0), Vector3(0, 0.042193376, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wrw2x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button1/Pad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.042193376, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_typqq"]
+_data = {
+&"ButtonPress": SubResource("Animation_4b6nj"),
+&"RESET": SubResource("Animation_wrw2x")
+}
+
+[node name="Button1" unique_id=1223413526 instance=ExtResource("1_4b6nj")]
+
+[node name="Pad" parent="Button1" parent_id_path=PackedInt32Array(694718828) index="0" unique_id=80388981]
+transform = Transform3D(0.12656724, 0, 0, 0, 0.034163967, 0, 0, 0, 0.12656724, 0, 0.042193376, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Button1/Pad" index="0" unique_id=1760775997 node_paths=PackedStringArray("anim_player")]
+script = SubResource("GDScript_4b6nj")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button1/Pad/StaticBody3D" index="0" unique_id=333441849]
+shape = SubResource("CylinderShape3D_wrw2x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button1/Pad" index="1" unique_id=207093905]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_typqq")

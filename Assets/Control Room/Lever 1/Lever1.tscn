@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cmnx70u7q5vhn"]
+
+[ext_resource type="PackedScene" uid="uid://cc8rinqkpugnh" path="res://Assets/Control Room/Lever 1/Lever1.glb" id="1_yyy66"]
+[ext_resource type="Material" uid="uid://c57ynolibnktj" path="res://Resources/Materials/Metal 021/Metal021.tres" id="2_5wju7"]
+[ext_resource type="Material" uid="uid://b64yyyx4u2djr" path="res://Resources/Materials/Red Plastic/RedPlastic.tres" id="3_5wju7"]
+[ext_resource type="Material" uid="uid://5kqtoc3h3lfr" path="res://Resources/Materials/Metal 052C/Metal052C.tres" id="3_ikqf6"]
+
+[node name="AutoRodsSwitch" unique_id=1340879295 instance=ExtResource("1_yyy66")]
+
+[node name="Lever 1" parent="." index="0" unique_id=564793376]
+material_override = ExtResource("2_5wju7")
+
+[node name="Cylinder_001" parent="Lever 1" index="0" unique_id=1266742110]
+material_override = ExtResource("2_5wju7")
+
+[node name="Cylinder_002" parent="Lever 1" index="1" unique_id=1980799785]
+material_override = ExtResource("3_5wju7")
+
+[node name="Cube" parent="Lever 1/Cylinder_002" index="0" unique_id=1575915927]
+material_override = ExtResource("2_5wju7")
+
+[node name="Cylinder_003" parent="Lever 1" index="2" unique_id=1848408502]
+material_override = ExtResource("3_ikqf6")
